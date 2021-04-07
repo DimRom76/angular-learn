@@ -1,0 +1,81 @@
+<div class="card">
+  <h2
+    [ngStyle]="{
+      color: card.title.length < 5 ? 'black' : 'blue',
+      fontWeight: card.title.length < 7 ? 'normal' : 'bold'
+    }"
+  >
+    {{ index }}. {{ card.title }}
+  </h2>
+  <!-- <p
+    class="text"
+    [ngClass]="{
+      blue: textColor === 'blue',
+      red: textColor === 'red',
+      green: textColor === 'green'
+    }"
+  >
+    {{ text }}
+  </p>  или как пример ниже-->
+  <p
+    class="text"
+    [class.blue]="textColor === 'blue'"
+    [class.red]="textColor === 'red'"
+    [class.green]="textColor === 'green'"
+  >
+    {{ card.text }}
+  </p>
+
+  <div class="buttons">
+    <button (click)="textColor = 'blue'">Set blue</button>
+    <button (click)="textColor = 'red'">Set red</button>
+    <button (click)="textColor = 'green'">Set green</button>
+  </div>
+
+  <div class="buttons">
+    <button (click)="changeTitle()">Change title</button>
+    <button (click)="card.title = 'Inline title'">Change title inline</button>
+  </div>
+
+  <div>
+    <input
+      type="text"
+      [(ngModel)]="card.title"
+      (ngModelChange)="changeHandler()"
+    />
+  </div>
+  <hr />
+  <div>
+    <strong>{{ cardDate | date: "short" }}</strong>
+    <br />
+    <strong>{{
+      cardDate | date: "dd MMMM yyyy HH:mm:ss":undefined:"ru"
+    }}</strong
+    ><br />
+    <a href="https://angular.io/api/common/DatePipe"> use DatePipe </a>
+  </div>
+
+  <!-- two way Binding
+    <div>
+    <input type="text" (input)="inputHandler($event)" [value]="title" />
+    <input
+      type="text"
+      #myInput
+      (input)="inputHandlerValue(myInput.value)"
+      [value]="title"
+    />
+  </div> -->
+
+  <!-- <strong>Number: [[ number ]]</strong>
+  <div>array: [[ array ]]</div>
+
+  <pre>[[ obj | json ]]</pre>
+
+  <p>[[ getInfo() ]]</p>
+
+  <div>
+    <img [src]="imgUrl" alt="logo" />
+    <br />
+    <button [disabled]="disabled">Enable</button>
+  </div> -->
+</div>
